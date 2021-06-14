@@ -24,7 +24,7 @@ public class Methoden {
 			e.printStackTrace();
 		}
 
-		// zuf‰llige Zeile ausw‰hlen
+		// zuf√§llige Zeile ausw√§hlen
 		int zeile = (int) (Math.random() * anzBegriffe + 1);
 
 		do {
