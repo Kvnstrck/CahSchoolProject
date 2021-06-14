@@ -1137,7 +1137,7 @@ public class CAH {
 
 		aktSpieler.setVisible(true);
 		aktSpieler.setText("<html><span style='color:#fff; font-size: 12px;font-weight: 40;'><b>aktueller Spieler:</b> "
-				+ name4 + " (Zar)</span></html>");
+				+ name4 + " (Czar)</span></html>");
 
 		naechsterSpieler.setVisible(false);
 
@@ -1160,7 +1160,7 @@ public class CAH {
 	}
 
 	public static void kartenAufdecken(JFrame f) {
-		// Antworten der Spieler anzeigen, Gewinnbekanntgabe nach Auswahl von Zar
+		// Antworten der Spieler anzeigen, Gewinnbekanntgabe nach Auswahl von Czar
 
 		aktSpieler.setVisible(false);
 		f.remove(sp1gewaehlt);
@@ -1218,7 +1218,7 @@ public class CAH {
 		antwortSp3.setVisible(false);
 
 		JLabel hinweisZar = new JLabel("<html><span style='color:#fff; font-size: 12px;'>" + name4
-				+ " (Zar): bitte wähle eine Karte aus:</span></b></html>");
+				+ " (Czar): bitte wähle eine Karte aus:</span></b></html>");
 		hinweisZar.setBounds(290, 220, 350, 200);
 		f.add(hinweisZar);
 
@@ -1256,7 +1256,6 @@ public class CAH {
 			public void actionPerformed(ActionEvent e) {
 				sp1gewonnen.setVisible(true);
 				antwortSp1.setVisible(true);
-
 				hinweisZar.setVisible(false);
 				buttonS1Antwort.setVisible(false);
 				buttonS2Antwort.setVisible(false);
@@ -1280,7 +1279,6 @@ public class CAH {
 			public void actionPerformed(ActionEvent e) {
 				sp2gewonnen.setVisible(true);
 				antwortSp2.setVisible(true);
-
 				hinweisZar.setVisible(false);
 				buttonS1Antwort.setVisible(false);
 				buttonS2Antwort.setVisible(false);
