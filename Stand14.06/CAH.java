@@ -63,6 +63,9 @@ public class CAH {
 
 	// neue schwarze Karte
 	public static JButton neuSchwarz;
+	
+	// schwarze Karte
+	public static JLabel schwarzeKarte;
 
 	public static void main(String[] args) throws IOException {
 			// Grundgerüst
@@ -111,7 +114,7 @@ public class CAH {
 			f.add(neuSchwarz);
 
 			// schwarze Karte anzeigen
-			JLabel schwarzeKarte = new JLabel("<html><span style='color:#fff; font-size: 20px;font-weight: 40;'>"
+			schwarzeKarte = new JLabel("<html><span style='color:#fff; font-size: 20px;font-weight: 40;'>"
 					+ Methoden.begriffausdatei + "</span></html>");
 			schwarzeKarte.setBounds(150, 100, 600, 250);
 			schwarzeKarte.setHorizontalAlignment(SwingConstants.CENTER);
@@ -979,7 +982,7 @@ public class CAH {
 				+ name3 + "</span></html>");
 		naechsterSpieler
 				.setText("<html><span style='color:#fff; font-size: 12px;font-weight: 40;'><b>nächster Spieler:</b> "
-						+ name4 + " (Zar)</span></html>");
+						+ name4 + " (Czar)</span></html>");
 
 		try {
 			weisseKarte(f);
@@ -1163,6 +1166,7 @@ public class CAH {
 		f.remove(sp1gewaehlt);
 		f.remove(sp2gewaehlt);
 		f.remove(sp3gewaehlt);
+		
 
 		// Spieler 1 hat gewonnen
 		JLabel sp1gewonnen = new JLabel();
@@ -1179,7 +1183,8 @@ public class CAH {
 		antwortSp1.setBounds(320, 320, 350, 200);
 		f.add(antwortSp1);
 		antwortSp1.setVisible(false);
-
+		
+		
 		// Spieler 2 hat gewonnen
 		JLabel sp2gewonnen = new JLabel();
 		sp2gewonnen.setText("<html><span style='color:#fff; font-size: 20px; font-weight: 40;'><b>" + name2
@@ -1258,7 +1263,12 @@ public class CAH {
 				buttonS3Antwort.setVisible(false);
 
 				naechsteRunde.setVisible(true);
+				
+				// schwarze Karte vollständig mit Antwort von Spieler 1
+				String antwortGesamt1 = Methoden.begriffausdatei.replace("___", antwort1);
+				schwarzeKarte.setText("<html><span style='color:#fff; font-size:20px; font-weight:40'>" + antwortGesamt1 + "</span></html>");
 
+				// Punkte
 				punkte1++;
 				System.out.println("Punkte Spieler 1: " + punkte1);
 
@@ -1277,6 +1287,10 @@ public class CAH {
 				buttonS3Antwort.setVisible(false);
 
 				naechsteRunde.setVisible(true);
+				
+				// schwarze Karte vollständig mit Antwort von Spieler 2
+				String antwortGesamt2 = Methoden.begriffausdatei.replace("___", antwort2);
+				schwarzeKarte.setText("<html><span style='color:#fff; font-size:20px; font-weight:40'>" + antwortGesamt2 + "</span></html>");
 
 				punkte2++;
 				System.out.println("Punkte Spieler 2: " + punkte2);
@@ -1295,6 +1309,10 @@ public class CAH {
 				buttonS3Antwort.setVisible(false);
 
 				naechsteRunde.setVisible(true);
+				
+				// schwarze Karte vollständig mit Antwort von Spieler 1
+				String antwortGesamt3 = Methoden.begriffausdatei.replace("___", antwort3);
+				schwarzeKarte.setText("<html><span style='color:#fff; font-size:20px; font-weight:40'>" + antwortGesamt3 + "</span></html>");
 
 				punkte3++;
 				System.out.println("Punkte Spieler 3: " + punkte3);
