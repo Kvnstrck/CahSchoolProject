@@ -9,10 +9,10 @@ import javax.swing.*;
 
 public class CAH {
 
-	// Name ‰ndern-Button (ausgeblendet)
+	// Name √§ndern-Button (ausgeblendet)
 	public static JButton changeNameButton;
 
-	// weiﬂe Karten
+	// wei√üe Karten
 	public static String begriff1 = null;
 	public static String begriff2 = null;
 	public static String begriff3 = null;
@@ -25,7 +25,7 @@ public class CAH {
 	public static boolean spieler2 = false;
 	public static boolean spieler3 = false;
 
-	// gegebene Antworten weiﬂe Karte
+	// gegebene Antworten wei√üe Karte
 	public static String antwort1 = null;
 	public static String antwort2 = null;
 	public static String antwort3 = null;
@@ -33,7 +33,7 @@ public class CAH {
 	// Spieler 1 nach 1. Runde sperren
 	public static boolean sp1sperren = false;
 
-	// Spieler haben gew‰hlt
+	// Spieler haben gew√§hlt
 	public static JLabel sp1gewaehlt;
 	public static JLabel sp2gewaehlt;
 	public static JLabel sp3gewaehlt;
@@ -57,7 +57,7 @@ public class CAH {
 	public static JLabel labelpunkte3;
 	public static JLabel labelpunkte4;
 
-	// Anzeige aktueller/n‰chster Spieler
+	// Anzeige aktueller/n√§chster Spieler
 	public static JLabel aktSpieler;
 	public static JLabel naechsterSpieler;
 
@@ -68,7 +68,7 @@ public class CAH {
 	public static JLabel schwarzeKarte;
 
 	public static void main(String[] args) throws IOException {
-		// Grundger¸st
+		// Grundger√ºst
 		JFrame f = new JFrame();
 		f.setSize(1000, 700);
 		f.setLayout(null);
@@ -106,7 +106,7 @@ public class CAH {
 		linie.setBounds(20, 5, 950, 120);
 		f.add(linie);
 
-		// Button neue schwarze Karte / n‰chste Runde
+		// Button neue schwarze Karte / n√§chste Runde
 		neuSchwarz = new JButton(
 				"<html><span style='word-wrap:break-word;color:black;'>schwarze Karte wechseln</span></html>");
 		neuSchwarz.setBackground(Color.WHITE);
@@ -131,8 +131,6 @@ public class CAH {
 					e1.printStackTrace();
 				}
 
-				// schwarzeKarte.setBounds(200, 50, 500, 300);
-				// f.add(schwarzeKarte);
 				schwarzeKarte.setText("<html><span style='color:#fff; font-size: 20px;font-weight: 40;'>" + kartentext
 						+ "</span></html>");
 			}
@@ -146,10 +144,10 @@ public class CAH {
 		aktSpieler.setVisible(false);
 		f.add(aktSpieler);
 
-		// n‰chster Spieler-Anzeige
+		// n√§chster Spieler-Anzeige
 		naechsterSpieler = new JLabel();
 		naechsterSpieler
-				.setText("<html><span style='color:#fff; font-size: 12px;font-weight: 40;'><b>n‰chster Spieler:</b> "
+				.setText("<html><span style='color:#fff; font-size: 12px;font-weight: 40;'><b>n√§chster Spieler:</b> "
 						+ name2 + "</span></html>");
 		naechsterSpieler.setBounds(530, 400, 250, 100);
 		naechsterSpieler.setVisible(false);
@@ -166,7 +164,7 @@ public class CAH {
 	}
 
 	public static void weisseKarte(JFrame f) throws IOException {
-		// weiﬂe Karten darstellen
+		// wei√üe Karten darstellen
 
 		// Begriffe aus Datei laden
 		RandomAccessFile begriffe = null;
@@ -190,7 +188,7 @@ public class CAH {
 			e.printStackTrace();
 		}
 
-		// Zufallszahlen f¸r Begriffe bestimmen
+		// Zufallszahlen f√ºr Begriffe bestimmen
 		int randomZahl1 = (int) (Math.random() * anzBegriffe + 1);
 		int randomZahl2 = 0;
 		int randomZahl3 = 0;
@@ -356,14 +354,13 @@ public class CAH {
 		punkte1 = Integer.parseInt(score.readLine());
 		punkte2 = Integer.parseInt(score.readLine());
 		punkte3 = Integer.parseInt(score.readLine());
-		punkte4 = Integer.parseInt(score.readLine());
 
 		punkteArray[0] = punkte1;
 		punkteArray[1] = punkte2;
 		punkteArray[2] = punkte3;
 		punkteArray[2] = punkte3;
 
-		// Punktest‰nde anzeigen
+		// Punktest√§nde anzeigen
 		labelpunkte(f);
 
 		f.add(labelpunkte1);
@@ -371,8 +368,8 @@ public class CAH {
 		f.add(labelpunkte3);
 		f.add(labelpunkte4);
 
-		// Button Namen ‰ndern (nicht sichtbar, Button wird ¸ber Men¸ aufgerufen)
-		changeNameButton = new JButton("Namen ‰ndern");
+		// Button Namen √§ndern (nicht sichtbar, Button wird √ºber Men√º aufgerufen)
+		changeNameButton = new JButton("Namen √§ndern");
 		RandomAccessFile namen = new RandomAccessFile("namen.txt", "rw");
 //		changeNameButton.setBounds(850, 230, 125, 20);
 //		f.add(changeNameButton);
@@ -395,8 +392,8 @@ public class CAH {
 		scorename3.setBounds(850, 180, 80, 20);
 
 		JLabel scorename4 = new JLabel(
-				"<html><span style='color:#fff; font-size: 12px;font-weight: 20;'>" + name4 + ":</span></html>");
-		scorename4.setBounds(850, 200, 80, 20);
+				"<html><span style='color:#fff; font-size: 12px;font-weight: 20;'>" + name4 + " (Czar)</span></html>");
+		scorename4.setBounds(850, 200, 130, 20);
 
 		f.add(scorename1);
 		f.add(scorename2);
@@ -416,7 +413,7 @@ public class CAH {
 				boolean wiederholen = true;
 
 				do {
-					name1 = JOptionPane.showInputDialog(null, "Name Spieler 1:", "Name ‰ndern",
+					name1 = JOptionPane.showInputDialog(null, "Name Spieler 1:", "Name √§ndern",
 							JOptionPane.QUESTION_MESSAGE);
 					wiederholen = false;
 					if (name1.length() < 1) {
@@ -427,7 +424,7 @@ public class CAH {
 				} while (wiederholen);
 
 				do {
-					name2 = JOptionPane.showInputDialog(null, "Name Spieler 2:", "Name ‰ndern",
+					name2 = JOptionPane.showInputDialog(null, "Name Spieler 2:", "Name √§ndern",
 							JOptionPane.QUESTION_MESSAGE);
 					wiederholen = false;
 					if (name2.length() < 1) {
@@ -438,7 +435,7 @@ public class CAH {
 				} while (wiederholen);
 
 				do {
-					name3 = JOptionPane.showInputDialog(null, "Name Spieler 3:", "Name ‰ndern",
+					name3 = JOptionPane.showInputDialog(null, "Name Spieler 3:", "Name √§ndern",
 							JOptionPane.QUESTION_MESSAGE);
 					wiederholen = false;
 					if (name3.length() < 1) {
@@ -449,7 +446,7 @@ public class CAH {
 				} while (wiederholen);
 
 				do {
-					name4 = JOptionPane.showInputDialog(null, "Name Spieler 4:", "Name ‰ndern",
+					name4 = JOptionPane.showInputDialog(null, "Name Spieler 4:", "Name √§ndern",
 							JOptionPane.QUESTION_MESSAGE);
 					wiederholen = false;
 					if (name4.length() < 1) {
@@ -466,7 +463,7 @@ public class CAH {
 				scorename3.setText("<html><span style='color:#fff; font-size: 12px; font-weight: 20;'>" + name3
 						+ ":</span></html>");
 				scorename4.setText("<html><span style='color:#fff; font-size: 12px; font-weight: 20;'>" + name4
-						+ ":</span></html>");
+						+ " (Czar)</span></html>");
 
 				RandomAccessFile namen;
 				try {
@@ -509,21 +506,21 @@ public class CAH {
 		labelpunkte4 = new JLabel();
 		labelpunkte4.setText("<html><span style='color:#fff; font-size: 12px;font-weight: 20;'>" + punkteArray[3]
 				+ "</span></html>");
-		labelpunkte4.setBounds(920, 100, 800, 220);
+//		labelpunkte4.setBounds(920, 100, 800, 220);
 
 	}
 
 	public static void menue(JFrame f) throws IOException {
-		// Men¸leiste erzeugen
+		// Men√ºleiste erzeugen
 		JMenuBar menueLeiste = new JMenuBar();
 
-		// Men¸elemente erzeugen
+		// Men√ºelemente erzeugen
 		JMenu datei = new JMenu("Datei");
 		JMenu einstellungen = new JMenu("Einstellungen");
 
-		// Untermen¸elemente erzeugen
+		// Untermen√ºelemente erzeugen
 		// Spiel beenden
-		JMenuItem beenden = new JMenuItem("Spiel schlieﬂen");
+		JMenuItem beenden = new JMenuItem("Spiel schlie√üen");
 		beenden.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -532,8 +529,8 @@ public class CAH {
 
 		});
 
-		// Spielernamen ‰ndern
-		JMenuItem namenAendern = new JMenuItem("Spielernamen ‰ndern");
+		// Spielernamen √§ndern
+		JMenuItem namenAendern = new JMenuItem("Spielernamen √§ndern");
 		namenAendern.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -541,8 +538,8 @@ public class CAH {
 			}
 		});
 
-		// Punkte zur¸cksetzen
-		JMenuItem punkteReset = new JMenuItem("Punktestand zur¸cksetzen");
+		// Punkte zur√ºcksetzen
+		JMenuItem punkteReset = new JMenuItem("Punktestand zur√ºcksetzen");
 		punkteReset.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -586,13 +583,13 @@ public class CAH {
 					e1.printStackTrace();
 				}
 
-				JOptionPane.showMessageDialog(null, "Punktestand erfolgreich zur¸ckgesetzt!",
-						"Punktestand zur¸cksetzen", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Punktestand erfolgreich zur√ºckgesetzt!",
+						"Punktestand zur√ºcksetzen", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 
-		// weiﬂe Karten bearbeiten
-		JMenuItem weissBearbeiten = new JMenuItem("weiﬂe Karten bearbeiten");
+		// wei√üe Karten bearbeiten
+		JMenuItem weissBearbeiten = new JMenuItem("wei√üe Karten bearbeiten");
 		weissBearbeiten.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -600,7 +597,7 @@ public class CAH {
 					Desktop.getDesktop().open(new File("white.txt"));
 				} catch (Exception e1) {
 					JOptionPane.showMessageDialog(null,
-							"Fehler: \nDie Datei konnte nicht geˆffnet werden!\nDie Datei muss 'white.txt' heiﬂen!",
+							"Fehler: \nDie Datei konnte nicht ge√∂ffnet werden!\nDie Datei muss 'white.txt' hei√üen!",
 							"Fehler", JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -615,18 +612,18 @@ public class CAH {
 					Desktop.getDesktop().open(new File("black.txt"));
 				} catch (Exception e1) {
 					JOptionPane.showMessageDialog(null,
-							"Fehler: \nDie Datei konnte nicht geˆffnet werden!\nDie Datei muss 'black.txt' heiﬂen!",
+							"Fehler: \nDie Datei konnte nicht ge√∂ffnet werden!\nDie Datei muss 'black.txt' hei√üen!",
 							"Fehler", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
 
-		// Men¸elemente hinzuf¸gen
+		// Men√ºelemente hinzuf√ºgen
 		menueLeiste.add(datei);
 		menueLeiste.add(einstellungen);
 		menueLeiste.setBounds(0, 0, 1000, 20);
 
-		// Untermen¸elemente hinzuf¸gen
+		// Untermen√ºelemente hinzuf√ºgen
 		datei.add(beenden);
 
 		einstellungen.add(namenAendern);
@@ -641,7 +638,7 @@ public class CAH {
 		// Button "neue schwarze Karte" deaktivieren, nachdem Runde begonnen hat
 		neuSchwarz.setVisible(false);
 
-		// Antwortmˆglichkeiten f¸r Spieler 1
+		// Antwortm√∂glichkeiten f√ºr Spieler 1
 
 		aktSpieler.setVisible(true);
 		aktSpieler.setText("<html><span style='color:#fff; font-size: 12px;font-weight: 40;'><b>aktueller Spieler:</b> "
@@ -649,16 +646,16 @@ public class CAH {
 
 		naechsterSpieler.setVisible(true);
 		naechsterSpieler
-				.setText("<html><span style='color:#fff; font-size: 12px;font-weight: 40;'><b>n‰chster Spieler:</b> "
+				.setText("<html><span style='color:#fff; font-size: 12px;font-weight: 40;'><b>n√§chster Spieler:</b> "
 						+ name2 + "</span></html>");
 
 		sp1gewaehlt = new JLabel("<html><span style='color:#fff; font-size: 12px;font-weight: 40;'>" + name1
-				+ " hat gew‰hlt!</span></html>");
+				+ " hat gew√§hlt!</span></html>");
 		sp1gewaehlt.setBounds(150, 300, 150, 50);
 		sp1gewaehlt.setVisible(false);
 		f.add(sp1gewaehlt);
 
-		// Antwortmˆglichkeiten Buttons
+		// Antwortm√∂glichkeiten Buttons
 		JButton button1 = new JButton();
 		button1.setText("<html><span style='word-wrap:break-word;'>" + begriff1 + "</span></html>");
 		button1.setBounds(50, 500, 250, 60);
@@ -797,10 +794,10 @@ public class CAH {
 	}
 
 	public static void weiterbutton1(JFrame f) {
-		// Button "n‰chster Spieler", nachdem Spieler 1 gew‰hlt hat
+		// Button "n√§chster Spieler", nachdem Spieler 1 gew√§hlt hat
 
 		JButton weiterbutton = new JButton();
-		weiterbutton.setText("<html><span style='word-wrap:break-word;'>n‰chster Spieler</span></html>");
+		weiterbutton.setText("<html><span style='word-wrap:break-word;'>n√§chster Spieler</span></html>");
 		weiterbutton.setBounds(350, 500, 150, 50);
 		weiterbutton.setBackground(Color.WHITE);
 		f.add(weiterbutton);
@@ -818,17 +815,17 @@ public class CAH {
 	}
 
 	public static void spieler2Antwort(JFrame f) {
-		// Antwortmˆglichkeiten f¸r Spieler 2
+		// Antwortm√∂glichkeiten f√ºr Spieler 2
 
 		aktSpieler.setText("<html><span style='color:#fff; font-size: 12px;font-weight: 40;'><b>aktueller Spieler:</b> "
 				+ name2 + "</span></html>");
 		naechsterSpieler
-				.setText("<html><span style='color:#fff; font-size: 12px;font-weight: 40;'><b>n‰chster Spieler:</b> "
+				.setText("<html><span style='color:#fff; font-size: 12px;font-weight: 40;'><b>n√§chster Spieler:</b> "
 						+ name3 + "</span></html>");
 		f.repaint();
 
 		sp2gewaehlt = new JLabel("<html><span style='color:#fff; font-size: 12px;font-weight: 40;'>" + name2
-				+ " hat gew‰hlt!</span></html>");
+				+ " hat gew√§hlt!</span></html>");
 		sp2gewaehlt.setBounds(400, 300, 150, 50);
 		sp2gewaehlt.setVisible(false);
 		f.add(sp2gewaehlt);
@@ -839,7 +836,7 @@ public class CAH {
 			e3.printStackTrace();
 		}
 
-		// Antwortmˆglichkeiten Buttons
+		// Antwortm√∂glichkeiten Buttons
 		JButton button1 = new JButton();
 		button1.setText("<html><span style='word-wrap:break-word;'>" + begriff1 + "</span></html>");
 		button1.setBounds(50, 500, 250, 60);
@@ -982,10 +979,10 @@ public class CAH {
 	}
 
 	public static void weiterbutton2(JFrame f) {
-		// Button "n‰chster Spieler", nachdem Spieler 2 gew‰hlt hat
+		// Button "n√§chster Spieler", nachdem Spieler 2 gew√§hlt hat
 
 		JButton weiterbutton2 = new JButton();
-		weiterbutton2.setText("<html><span style='word-wrap:break-word;'>n‰chster Spieler</span></html>");
+		weiterbutton2.setText("<html><span style='word-wrap:break-word;'>n√§chster Spieler</span></html>");
 		weiterbutton2.setBounds(350, 500, 150, 50);
 		weiterbutton2.setBackground(Color.WHITE);
 		f.add(weiterbutton2);
@@ -1003,10 +1000,10 @@ public class CAH {
 	}
 
 	public static void spieler3Antwort(JFrame f) {
-		// Antwortmˆglichkeiten f¸r Spieler 3
+		// Antwortm√∂glichkeiten f√ºr Spieler 3
 
 		sp3gewaehlt = new JLabel("<html><span style='color:#fff; font-size: 12px;font-weight: 40;'>" + name3
-				+ " hat gew‰hlt!</span></html>");
+				+ " hat gew√§hlt!</span></html>");
 		sp3gewaehlt.setBounds(650, 300, 150, 50);
 		sp3gewaehlt.setVisible(false);
 		f.add(sp3gewaehlt);
@@ -1014,7 +1011,7 @@ public class CAH {
 		aktSpieler.setText("<html><span style='color:#fff; font-size: 12px;font-weight: 40;'><b>aktueller Spieler:</b> "
 				+ name3 + "</span></html>");
 		naechsterSpieler
-				.setText("<html><span style='color:#fff; font-size: 12px;font-weight: 40;'><b>n‰chster Spieler:</b> "
+				.setText("<html><span style='color:#fff; font-size: 12px;font-weight: 40;'><b>n√§chster Spieler:</b> "
 						+ name4 + " (Czar)</span></html>");
 
 		try {
@@ -1023,7 +1020,7 @@ public class CAH {
 			e3.printStackTrace();
 		}
 
-		// Antwortmˆglichkeiten Buttons
+		// Antwortm√∂glichkeiten Buttons
 		JButton button1 = new JButton();
 		button1.setText("<html><span style='word-wrap:break-word;'>" + begriff1 + "</span></html>");
 		button1.setBounds(50, 500, 250, 60);
@@ -1166,7 +1163,7 @@ public class CAH {
 	}
 
 	public static void endeButton(JFrame f) {
-		// Button "Karten aufdecken", nachdem Spieler 3 gew‰hlt hat
+		// Button "Karten aufdecken", nachdem Spieler 3 gew√§hlt hat
 
 		aktSpieler.setVisible(true);
 		aktSpieler.setText("<html><span style='color:#fff; font-size: 12px;font-weight: 40;'><b>aktueller Spieler:</b> "
@@ -1249,7 +1246,7 @@ public class CAH {
 		antwortSp3.setVisible(false);
 
 		JLabel hinweisCzar = new JLabel("<html><span style='color:#fff; font-size: 12px;'>" + name4
-				+ " (Czar): bitte w‰hle eine Karte aus:</span></b></html>");
+				+ " (Czar): bitte w√§hle eine Karte aus:</span></b></html>");
 		hinweisCzar.setBounds(290, 220, 350, 200);
 		f.add(hinweisCzar);
 
@@ -1306,7 +1303,7 @@ public class CAH {
 
 				naechsteRunde.setVisible(true);
 				
-				//schwarze Karte vollst‰ndig mit Antwort Spieler 1
+				//schwarze Karte vollst√§ndig mit Antwort Spieler 1
 				String antwortGesamt1 = Methoden.begriffausdatei.replace("___", antwort1);
 				schwarzeKarte.setText("<html><span style = 'color:#fff; font-size:20px; font-weight: 40'>" + antwortGesamt1 + "</span></html>");
 			}
@@ -1336,7 +1333,7 @@ public class CAH {
 
 				naechsteRunde.setVisible(true);
 				
-				//schwarze Karte vollst‰ndig mit Antwort Spieler 2
+				//schwarze Karte vollst√§ndig mit Antwort Spieler 2
 				String antwortGesamt2 = Methoden.begriffausdatei.replace("___", antwort2);
 				schwarzeKarte.setText("<html><span style = 'color:#fff; font-size:20px; font-weight: 40'>" + antwortGesamt2 + "</span></html>");
 			
@@ -1368,7 +1365,7 @@ public class CAH {
 
 				naechsteRunde.setVisible(true);
 				
-				//schwarze Karte vollst‰ndig mit Antwort Spieler 3
+				//schwarze Karte vollst√§ndig mit Antwort Spieler 3
 				String antwortGesamt3 = Methoden.begriffausdatei.replace("___", antwort3);
 				schwarzeKarte.setText("<html><span style = 'color:#fff; font-size:20px; font-weight: 40'>" + antwortGesamt3 + "</span></html>");
 			
