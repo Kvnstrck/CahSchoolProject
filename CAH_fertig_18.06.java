@@ -1,5 +1,7 @@
 import java.awt.Color;
 import java.awt.Desktop;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -63,8 +65,8 @@ public class CAH {
 
 	// neue schwarze Karte
 	public static JButton neuSchwarz;
-	
-	//schwarze Karte
+
+	// schwarze Karte
 	public static JLabel schwarzeKarte;
 
 	public static void main(String[] args) throws IOException {
@@ -101,10 +103,20 @@ public class CAH {
 		f.add(titel);
 
 		// Linie unter Titel
-		JLabel linie = new JLabel(
-				"<html><h1 span style='color:#000;'>PlatzhalterPlatzhalterPlatzhalterPlatzhalterPlatzhalterPlatzhalterPlatzhalterPlatzhalter <hr></h1></html>");
-		linie.setBounds(20, 5, 950, 120);
+		JPanel linie = new JPanel();
+		linie.setOpaque(true);
+		linie.setBackground(Color.white);
+		linie.setPreferredSize(new Dimension(1, 1));
+		linie.setBounds(20, 80, 950, 1);
 		f.add(linie);
+
+		// Linie senkrecht
+		JPanel linieSenkrecht = new JPanel();
+		linieSenkrecht.setOpaque(true);
+		linieSenkrecht.setBackground(Color.white);
+		linieSenkrecht.setPreferredSize(new Dimension(1, 1));
+		linieSenkrecht.setBounds(838, 100, 1, 550);
+		f.add(linieSenkrecht);
 
 		// Button neue schwarze Karte / nächste Runde
 		neuSchwarz = new JButton(
@@ -313,7 +325,7 @@ public class CAH {
 		if (sp1sperren == false) {
 			// neue Runde
 			JButton rundeBeginnen = new JButton(
-					"<html><span style='word-wrap:break-word; font-size:15px;'>Runde beginnen</span></html>");
+					"<html><span style='word-wrap:break-word; font-size:15px;color:#000;'>Runde beginnen</span></html>");
 			rundeBeginnen.setBounds(315, 500, 250, 60);
 			rundeBeginnen.setBackground(Color.WHITE);
 			f.add(rundeBeginnen);
@@ -358,7 +370,6 @@ public class CAH {
 		punkteArray[0] = punkte1;
 		punkteArray[1] = punkte2;
 		punkteArray[2] = punkte3;
-		punkteArray[2] = punkte3;
 
 		// Punktestände anzeigen
 		labelpunkte(f);
@@ -366,7 +377,7 @@ public class CAH {
 		f.add(labelpunkte1);
 		f.add(labelpunkte2);
 		f.add(labelpunkte3);
-		f.add(labelpunkte4);
+//		f.add(labelpunkte4);
 
 		// Button Namen ändern (nicht sichtbar, Button wird über Menü aufgerufen)
 		changeNameButton = new JButton("Namen ändern");
@@ -393,7 +404,7 @@ public class CAH {
 
 		JLabel scorename4 = new JLabel(
 				"<html><span style='color:#fff; font-size: 12px;font-weight: 20;'>" + name4 + " (Czar)</span></html>");
-		scorename4.setBounds(850, 200, 130, 20);
+		scorename4.setBounds(850, 220, 130, 20);
 
 		f.add(scorename1);
 		f.add(scorename2);
@@ -547,35 +558,42 @@ public class CAH {
 				try {
 					punkte = new RandomAccessFile("score.txt", "rw");
 					punkte.setLength(0);
-					punkte.writeBytes(0 + "\n" + 0 + "\n" + 0 + "\n" + 0);
-
-					for (int i = 0; i < 3; i++) {
-						punkteArray[i] = 0;
-					}
-
-					String[] punkteStrArray = new String[punkteArray.length];
-
-					for (int i = 0; i < punkteArray.length; i++) {
-						punkteStrArray[i] = String.valueOf(punkteArray[i]);
-					}
-					
-					labelpunkte1.setText("<html><span style='color:#fff; font-size: 12px;font-weight: 20;'>"
-							+ punkteStrArray[0] + "</span></html>");
-
-					labelpunkte2.setText("<html><span style='color:#fff; font-size: 12px;font-weight: 20;'>"
-							+ punkteStrArray[1] + "</span></html>");
-
-					labelpunkte3.setText("<html><span style='color:#fff; font-size: 12px;font-weight: 20;'>"
-							+ punkteStrArray[2] + "</span></html>");
-					
-					f.repaint();
-
+					punkte.writeBytes(0 + "\n" + 0 + "\n" + 0);
 					punkte.close();
 				} catch (FileNotFoundException e1) {
 					e1.printStackTrace();
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
+
+				for (int i = 0; i < 3; i++) {
+					punkteArray[i] = 0;
+				}
+
+				String[] punkteStrArray = new String[punkteArray.length];
+
+				for (int i = 0; i < punkteArray.length; i++) {
+					punkteStrArray[i] = String.valueOf(punkteArray[i]);
+				}
+
+				f.remove(labelpunkte1);
+				f.remove(labelpunkte2);
+				f.remove(labelpunkte3);
+
+//				labelpunkte1.setVisible(false);
+//				labelpunkte2.setVisible(false);
+//				labelpunkte3.setVisible(false);
+
+				labelpunkte1.setText(
+						"<html><span style='color:#fff; font-size: 12px;font-weight: 20;'>" + 0 + "</span></html>");
+
+				labelpunkte2.setText(
+						"<html><span style='color:#fff; font-size: 12px;font-weight: 20;'>" + 0 + "</span></html>");
+
+				labelpunkte3.setText(
+						"<html><span style='color:#fff; font-size: 12px;font-weight: 20;'>" + 0 + "</span></html>");
+
+				f.repaint();
 
 				try {
 					punkteMethode(f);
@@ -585,21 +603,6 @@ public class CAH {
 
 				JOptionPane.showMessageDialog(null, "Punktestand erfolgreich zurückgesetzt!",
 						"Punktestand zurücksetzen", JOptionPane.INFORMATION_MESSAGE);
-			}
-		});
-
-		// weiße Karten bearbeiten
-		JMenuItem weissBearbeiten = new JMenuItem("weiße Karten bearbeiten");
-		weissBearbeiten.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				try {
-					Desktop.getDesktop().open(new File("white.txt"));
-				} catch (Exception e1) {
-					JOptionPane.showMessageDialog(null,
-							"Fehler: \nDie Datei konnte nicht geöffnet werden!\nDie Datei muss 'white.txt' heißen!",
-							"Fehler", JOptionPane.ERROR_MESSAGE);
-				}
 			}
 		});
 
@@ -618,18 +621,34 @@ public class CAH {
 			}
 		});
 
+		// weiße Karten bearbeiten
+		JMenuItem weissBearbeiten = new JMenuItem("weiße Karten bearbeiten");
+		weissBearbeiten.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Desktop.getDesktop().open(new File("white.txt"));
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null,
+							"Fehler: \nDie Datei konnte nicht geöffnet werden!\nDie Datei muss 'white.txt' heißen!",
+							"Fehler", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
+
 		// Menüelemente hinzufügen
 		menueLeiste.add(datei);
 		menueLeiste.add(einstellungen);
-		menueLeiste.setBounds(0, 0, 1000, 20);
+
+		menueLeiste.setBounds(0, 0, Toolkit.getDefaultToolkit().getScreenSize().width, 20);
 
 		// Untermenüelemente hinzufügen
 		datei.add(beenden);
 
 		einstellungen.add(namenAendern);
 		einstellungen.add(punkteReset);
-		einstellungen.add(weissBearbeiten);
 		einstellungen.add(schwarzBearbeiten);
+		einstellungen.add(weissBearbeiten);
 
 		f.add(menueLeiste);
 	}
@@ -657,32 +676,32 @@ public class CAH {
 
 		// Antwortmöglichkeiten Buttons
 		JButton button1 = new JButton();
-		button1.setText("<html><span style='word-wrap:break-word;'>" + begriff1 + "</span></html>");
+		button1.setText("<html><span style='word-wrap:break-word;color:#000;'>" + begriff1 + "</span></html>");
 		button1.setBounds(50, 500, 250, 60);
 		button1.setBackground(Color.WHITE);
 
 		JButton button2 = new JButton();
-		button2.setText("<html><span style='word-wrap:break-word;'>" + begriff2 + "</span></html>");
+		button2.setText("<html><span style='word-wrap:break-word;color:#000;'>" + begriff2 + "</span></html>");
 		button2.setBounds(315, 500, 250, 60);
 		button2.setBackground(Color.WHITE);
 
 		JButton button3 = new JButton();
-		button3.setText("<html><span style='word-wrap:break-word;'>" + begriff3 + "</span></html>");
+		button3.setText("<html><span style='word-wrap:break-word;color:#000;'>" + begriff3 + "</span></html>");
 		button3.setBounds(580, 500, 250, 60);
 		button3.setBackground(Color.WHITE);
 
 		JButton button4 = new JButton();
-		button4.setText("<html><span style='word-wrap:break-word;'>" + begriff4 + "</span></html>");
+		button4.setText("<html><span style='word-wrap:break-word;color:#000;'>" + begriff4 + "</span></html>");
 		button4.setBounds(50, 575, 250, 60);
 		button4.setBackground(Color.WHITE);
 
 		JButton button5 = new JButton();
-		button5.setText("<html><span style='word-wrap:break-word;'>" + begriff5 + "</span></html>");
+		button5.setText("<html><span style='word-wrap:break-word;color:#000;'>" + begriff5 + "</span></html>");
 		button5.setBounds(315, 575, 250, 60);
 		button5.setBackground(Color.WHITE);
 
 		JButton button6 = new JButton();
-		button6.setText("<html><span style='word-wrap:break-word;'>" + begriff6 + "</span></html>");
+		button6.setText("<html><span style='word-wrap:break-word;color:#000;'>" + begriff6 + "</span></html>");
 		button6.setBounds(580, 575, 250, 60);
 		button6.setBackground(Color.WHITE);
 
@@ -797,7 +816,7 @@ public class CAH {
 		// Button "nächster Spieler", nachdem Spieler 1 gewählt hat
 
 		JButton weiterbutton = new JButton();
-		weiterbutton.setText("<html><span style='word-wrap:break-word;'>nächster Spieler</span></html>");
+		weiterbutton.setText("<html><span style='word-wrap:break-word;color:#000;'>nächster Spieler</span></html>");
 		weiterbutton.setBounds(350, 500, 150, 50);
 		weiterbutton.setBackground(Color.WHITE);
 		f.add(weiterbutton);
@@ -838,32 +857,32 @@ public class CAH {
 
 		// Antwortmöglichkeiten Buttons
 		JButton button1 = new JButton();
-		button1.setText("<html><span style='word-wrap:break-word;'>" + begriff1 + "</span></html>");
+		button1.setText("<html><span style='word-wrap:break-word;color:#000;'>" + begriff1 + "</span></html>");
 		button1.setBounds(50, 500, 250, 60);
 		button1.setBackground(Color.WHITE);
 
 		JButton button2 = new JButton();
-		button2.setText("<html><span style='word-wrap:break-word;'>" + begriff2 + "</span></html>");
+		button2.setText("<html><span style='word-wrap:break-word;color:#000;'>" + begriff2 + "</span></html>");
 		button2.setBounds(315, 500, 250, 60);
 		button2.setBackground(Color.WHITE);
 
 		JButton button3 = new JButton();
-		button3.setText("<html><span style='word-wrap:break-word;'>" + begriff3 + "</span></html>");
+		button3.setText("<html><span style='word-wrap:break-word;color:#000;'>" + begriff3 + "</span></html>");
 		button3.setBounds(580, 500, 250, 60);
 		button3.setBackground(Color.WHITE);
 
 		JButton button4 = new JButton();
-		button4.setText("<html><span style='word-wrap:break-word;'>" + begriff4 + "</span></html>");
+		button4.setText("<html><span style='word-wrap:break-word;color:#000;'>" + begriff4 + "</span></html>");
 		button4.setBounds(50, 575, 250, 60);
 		button4.setBackground(Color.WHITE);
 
 		JButton button5 = new JButton();
-		button5.setText("<html><span style='word-wrap:break-word;'>" + begriff5 + "</span></html>");
+		button5.setText("<html><span style='word-wrap:break-word;color:#000;'>" + begriff5 + "</span></html>");
 		button5.setBounds(315, 575, 250, 60);
 		button5.setBackground(Color.WHITE);
 
 		JButton button6 = new JButton();
-		button6.setText("<html><span style='word-wrap:break-word;'>" + begriff6 + "</span></html>");
+		button6.setText("<html><span style='word-wrap:break-word;color:#000;'>" + begriff6 + "</span></html>");
 		button6.setBounds(580, 575, 250, 60);
 		button6.setBackground(Color.WHITE);
 
@@ -982,7 +1001,7 @@ public class CAH {
 		// Button "nächster Spieler", nachdem Spieler 2 gewählt hat
 
 		JButton weiterbutton2 = new JButton();
-		weiterbutton2.setText("<html><span style='word-wrap:break-word;'>nächster Spieler</span></html>");
+		weiterbutton2.setText("<html><span style='word-wrap:break-word;color:#000;'>nächster Spieler</span></html>");
 		weiterbutton2.setBounds(350, 500, 150, 50);
 		weiterbutton2.setBackground(Color.WHITE);
 		f.add(weiterbutton2);
@@ -1022,32 +1041,32 @@ public class CAH {
 
 		// Antwortmöglichkeiten Buttons
 		JButton button1 = new JButton();
-		button1.setText("<html><span style='word-wrap:break-word;'>" + begriff1 + "</span></html>");
+		button1.setText("<html><span style='word-wrap:break-word;color:#000;'>" + begriff1 + "</span></html>");
 		button1.setBounds(50, 500, 250, 60);
 		button1.setBackground(Color.WHITE);
 
 		JButton button2 = new JButton();
-		button2.setText("<html><span style='word-wrap:break-word;'>" + begriff2 + "</span></html>");
+		button2.setText("<html><span style='word-wrap:break-word;color:#000;'>" + begriff2 + "</span></html>");
 		button2.setBounds(315, 500, 250, 60);
 		button2.setBackground(Color.WHITE);
 
 		JButton button3 = new JButton();
-		button3.setText("<html><span style='word-wrap:break-word;'>" + begriff3 + "</span></html>");
+		button3.setText("<html><span style='word-wrap:break-word;color:#000;'>" + begriff3 + "</span></html>");
 		button3.setBounds(580, 500, 250, 60);
 		button3.setBackground(Color.WHITE);
 
 		JButton button4 = new JButton();
-		button4.setText("<html><span style='word-wrap:break-word;'>" + begriff4 + "</span></html>");
+		button4.setText("<html><span style='word-wrap:break-word;color:#000;'>" + begriff4 + "</span></html>");
 		button4.setBounds(50, 575, 250, 60);
 		button4.setBackground(Color.WHITE);
 
 		JButton button5 = new JButton();
-		button5.setText("<html><span style='word-wrap:break-word;'>" + begriff5 + "</span></html>");
+		button5.setText("<html><span style='word-wrap:break-word;color:#000;'>" + begriff5 + "</span></html>");
 		button5.setBounds(315, 575, 250, 60);
 		button5.setBackground(Color.WHITE);
 
 		JButton button6 = new JButton();
-		button6.setText("<html><span style='word-wrap:break-word;'>" + begriff6 + "</span></html>");
+		button6.setText("<html><span style='word-wrap:break-word;color:#000;'>" + begriff6 + "</span></html>");
 		button6.setBounds(580, 575, 250, 60);
 		button6.setBackground(Color.WHITE);
 
@@ -1172,7 +1191,8 @@ public class CAH {
 		naechsterSpieler.setVisible(false);
 
 		JButton aufdecken = new JButton();
-		aufdecken.setText("<html><span style='word-wrap:break-word;font-size:12px;'>Karten aufdecken</span></html>");
+		aufdecken.setText(
+				"<html><span style='word-wrap:break-word;font-size:12px;color:#000;'>Karten aufdecken</span></html>");
 		aufdecken.setBounds(315, 500, 250, 60);
 		aufdecken.setBackground(Color.WHITE);
 		f.add(aufdecken);
@@ -1252,28 +1272,28 @@ public class CAH {
 
 		// Spieler 1 Antwort Button
 		JButton buttonS1Antwort = new JButton(
-				"<html><span style='word-wrap:break-word;'>" + antwort1 + "</span></html>");
+				"<html><span style='word-wrap:break-word;color:#000;'>" + antwort1 + "</span></html>");
 		buttonS1Antwort.setBounds(50, 350, 250, 60);
 		buttonS1Antwort.setBackground(Color.WHITE);
 		f.add(buttonS1Antwort);
 
 		// Spieler 2 Antwort Button
 		JButton buttonS2Antwort = new JButton(
-				"<html><span style='word-wrap:break-word;'>" + antwort2 + "</span></html>");
+				"<html><span style='word-wrap:break-word;color:#000;'>" + antwort2 + "</span></html>");
 		buttonS2Antwort.setBounds(315, 350, 250, 60);
 		buttonS2Antwort.setBackground(Color.WHITE);
 		f.add(buttonS2Antwort);
 
 		// Spieler 3 Antwort Button
 		JButton buttonS3Antwort = new JButton(
-				"<html><span style='word-wrap:break-word;'>" + antwort3 + "</span></html>");
+				"<html><span style='word-wrap:break-word;color:#000;'>" + antwort3 + "</span></html>");
 		buttonS3Antwort.setBounds(580, 350, 250, 60);
 		buttonS3Antwort.setBackground(Color.WHITE);
 		f.add(buttonS3Antwort);
 
 		// neue Runde
 		JButton naechsteRunde = new JButton(
-				"<html><span style='word-wrap:break-word; font-size:15px;'>neue Runde</span></html>");
+				"<html><span style='word-wrap:break-word; font-size:15px;color:#000;'>neue Runde</span></html>");
 		naechsteRunde.setBounds(315, 500, 250, 60);
 		naechsteRunde.setBackground(Color.WHITE);
 		f.add(naechsteRunde);
@@ -1302,10 +1322,13 @@ public class CAH {
 				buttonS3Antwort.setVisible(false);
 
 				naechsteRunde.setVisible(true);
-				
-				//schwarze Karte vollständig mit Antwort Spieler 1
+
+				// schwarze Karte vollständig mit Antwort Spieler 1
 				String antwortGesamt1 = Methoden.begriffausdatei.replace("___", antwort1);
-				schwarzeKarte.setText("<html><span style = 'color:#fff; font-size:20px; font-weight: 40'>" + antwortGesamt1 + "</span></html>");
+				schwarzeKarte.setText("<html><span style = 'color:#fff; font-size:20px; font-weight: 40'>"
+						+ antwortGesamt1 + "</span></html>");
+
+				punkteAbspeichern();
 			}
 		});
 		buttonS2Antwort.addActionListener(new ActionListener() {
@@ -1313,7 +1336,7 @@ public class CAH {
 			public void actionPerformed(ActionEvent e) {
 				sp2gewonnen.setVisible(true);
 				antwortSp2.setVisible(true);
-				
+
 				punkteArray[1]++;
 				String[] punkteStrArray = new String[punkteArray.length];
 
@@ -1323,7 +1346,7 @@ public class CAH {
 
 				labelpunkte2.setText("<html><span style='color:#fff; font-size: 12px;font-weight: 20;'>"
 						+ punkteStrArray[1] + "</span></html>");
-				
+
 				f.repaint();
 
 				hinweisCzar.setVisible(false);
@@ -1332,15 +1355,16 @@ public class CAH {
 				buttonS3Antwort.setVisible(false);
 
 				naechsteRunde.setVisible(true);
-				
-				//schwarze Karte vollständig mit Antwort Spieler 2
-				String antwortGesamt2 = Methoden.begriffausdatei.replace("___", antwort2);
-				schwarzeKarte.setText("<html><span style = 'color:#fff; font-size:20px; font-weight: 40'>" + antwortGesamt2 + "</span></html>");
-			
 
+				// schwarze Karte vollständig mit Antwort Spieler 2
+				String antwortGesamt2 = Methoden.begriffausdatei.replace("___", antwort2);
+				schwarzeKarte.setText("<html><span style = 'color:#fff; font-size:20px; font-weight: 40'>"
+						+ antwortGesamt2 + "</span></html>");
+
+				punkteAbspeichern();
 			}
 		});
-		
+
 		buttonS3Antwort.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -1364,11 +1388,13 @@ public class CAH {
 				buttonS3Antwort.setVisible(false);
 
 				naechsteRunde.setVisible(true);
-				
-				//schwarze Karte vollständig mit Antwort Spieler 3
+
+				// schwarze Karte vollständig mit Antwort Spieler 3
 				String antwortGesamt3 = Methoden.begriffausdatei.replace("___", antwort3);
-				schwarzeKarte.setText("<html><span style = 'color:#fff; font-size:20px; font-weight: 40'>" + antwortGesamt3 + "</span></html>");
-			
+				schwarzeKarte.setText("<html><span style = 'color:#fff; font-size:20px; font-weight: 40'>"
+						+ antwortGesamt3 + "</span></html>");
+
+				punkteAbspeichern();
 
 			}
 		});
@@ -1396,6 +1422,21 @@ public class CAH {
 				f.repaint();
 			}
 		});
+
+	}
+
+	public static void punkteAbspeichern() {
+		RandomAccessFile punkte;
+		try {
+			punkte = new RandomAccessFile("score.txt", "rw");
+			punkte.setLength(0);
+			punkte.writeBytes(punkteArray[0] + "\n" + punkteArray[1] + "\n" + punkteArray[2]);
+			punkte.close();
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 
 	}
 
