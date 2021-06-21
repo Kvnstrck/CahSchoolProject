@@ -145,19 +145,12 @@ public class CAH {
 
 		// aktueller Spieler-Anzeige
 		aktSpieler = new JLabel();
-		// aktSpieler.setText("<html><span style='color:#fff; font-size:
-		// 12px;font-weight: 40;'><b>aktueller Spieler:</b> "
-		// + name1 + "</span></html>");
 		aktSpieler.setBounds(200, 400, 250, 100);
 		aktSpieler.setVisible(false);
 		f.add(aktSpieler);
 
 		// nächster Spieler-Anzeige
 		naechsterSpieler = new JLabel();
-		// naechsterSpieler
-		// .setText("<html><span style='color:#fff; font-size: 12px;font-weight:
-		// 40;'><b>nächster Spieler:</b> "
-		// + name2 + "</span></html>");
 		naechsterSpieler.setBounds(530, 400, 250, 100);
 		naechsterSpieler.setVisible(false);
 		f.add(naechsterSpieler);
@@ -398,9 +391,8 @@ public class CAH {
 				JTextField name3eingabe = new JTextField();
 				JTextField name4eingabe = new JTextField();
 
-				Object[] namenInhalt = { "Name Spieler 1:", name1eingabe, "\nName Spieler 2:", 
-						name2eingabe, "\nName Spieler 3:",
-						name3eingabe, "\nName Spieler 4:", name4eingabe, "\n" };
+				Object[] namenInhalt = { "Name Spieler 1:", name1eingabe, "\nName Spieler 2:", name2eingabe,
+						"\nName Spieler 3:", name3eingabe, "\nName Spieler 4:", name4eingabe, "\n" };
 				Object[] namenOptionen = { "speichern", "abbrechen" };
 
 				JOptionPane namenFenster = new JOptionPane(namenInhalt, JOptionPane.PLAIN_MESSAGE,
@@ -411,15 +403,13 @@ public class CAH {
 						+ name1eingabe.getText() + ":</span></html>");
 				scorename2.setText("<html><span style='color:#fff; font-size: 12px; font-weight: 20;'>"
 						+ name2eingabe.getText() + ":</span></html>");
-				
-				
-				
 				scorename3.setText("<html><span style='color:#fff; font-size: 12px; font-weight: 20;'>"
 						+ name3eingabe.getText() + ":</span></html>");
 				scorename4.setText("<html><span style='color:#fff; font-size: 12px; font-weight: 20;'>"
 						+ name4eingabe.getText() + " (Czar)</span></html>");
 
-				if (name1eingabe.getText().equals("") || name2eingabe.getText().equals("") || name3eingabe.getText().equals("") || name4eingabe.getText().equals("")) {
+				if (name1eingabe.getText().equals("") || name2eingabe.getText().equals("")
+						|| name3eingabe.getText().equals("") || name4eingabe.getText().equals("")) {
 					RandomAccessFile namen;
 					try {
 						namen = new RandomAccessFile("namen.txt", "rw");
@@ -431,19 +421,19 @@ public class CAH {
 					} catch (IOException e1) {
 						e1.printStackTrace();
 					}
-					
-					scorename1.setText("<html><span style='color:#fff; font-size: 12px; font-weight: 20;'>"
-							+ name1 + ":</span></html>");
-					scorename2.setText("<html><span style='color:#fff; font-size: 12px; font-weight: 20;'>"
-							+ name2 + ":</span></html>");
-					scorename3.setText("<html><span style='color:#fff; font-size: 12px; font-weight: 20;'>"
-							+ name3 + ":</span></html>");
-					scorename4.setText("<html><span style='color:#fff; font-size: 12px; font-weight: 20;'>"
-							+ name4 + " (Czar)</span></html>");
-					
+
+					scorename1.setText("<html><span style='color:#fff; font-size: 12px; font-weight: 20;'>" + name1
+							+ ":</span></html>");
+					scorename2.setText("<html><span style='color:#fff; font-size: 12px; font-weight: 20;'>" + name2
+							+ ":</span></html>");
+					scorename3.setText("<html><span style='color:#fff; font-size: 12px; font-weight: 20;'>" + name3
+							+ ":</span></html>");
+					scorename4.setText("<html><span style='color:#fff; font-size: 12px; font-weight: 20;'>" + name4
+							+ " (Czar)</span></html>");
+
 					JOptionPane.showMessageDialog(null,
-							"Fehler: \nBitte fülle alle Felder aus! Bitte probiere es erneut!",
-							"Fehler", JOptionPane.ERROR_MESSAGE);
+							"Fehler: \nBitte fülle alle Felder aus! Bitte probiere es erneut!", "Fehler",
+							JOptionPane.ERROR_MESSAGE);
 				} else {
 
 					// Namen abspeichern
@@ -451,15 +441,15 @@ public class CAH {
 					try {
 						namen = new RandomAccessFile("namen.txt", "rw");
 						namen.setLength(0);
-						namen.writeBytes(name1eingabe.getText() + "\n" + name2eingabe.getText() + "\n" + name3eingabe.getText() + "\n"
-								+ name4eingabe.getText());
+						namen.writeBytes(name1eingabe.getText() + "\n" + name2eingabe.getText() + "\n"
+								+ name3eingabe.getText() + "\n" + name4eingabe.getText());
 						namen.close();
 					} catch (FileNotFoundException e1) {
 						e1.printStackTrace();
 					} catch (IOException e1) {
 						e1.printStackTrace();
 					}
-					
+
 					scorename1.setText("<html><span style='color:#fff; font-size: 12px; font-weight: 20;'>"
 							+ name1eingabe.getText() + ":</span></html>");
 					scorename2.setText("<html><span style='color:#fff; font-size: 12px; font-weight: 20;'>"
@@ -505,7 +495,6 @@ public class CAH {
 		labelpunkte1.setBounds(920, 100, 800, 100);
 
 		labelpunkte2 = new JLabel();
-
 		labelpunkte2.setText("<html><span style='color:#fff; font-size: 12px;font-weight: 20;'>" + punkteArray[1]
 				+ "</span></html>");
 		labelpunkte2.setBounds(920, 100, 800, 140);
@@ -586,10 +575,6 @@ public class CAH {
 				f.remove(labelpunkte2);
 				f.remove(labelpunkte3);
 
-//				labelpunkte1.setVisible(false);
-//				labelpunkte2.setVisible(false);
-//				labelpunkte3.setVisible(false);
-
 				labelpunkte1.setText(
 						"<html><span style='color:#fff; font-size: 12px;font-weight: 20;'>" + 0 + "</span></html>");
 
@@ -646,8 +631,7 @@ public class CAH {
 		menueLeiste.add(datei);
 		menueLeiste.add(einstellungen);
 
-		menueLeiste.setBounds(0, 0, 
-				Toolkit.getDefaultToolkit().getScreenSize().width, 20);
+		menueLeiste.setBounds(0, 0, Toolkit.getDefaultToolkit().getScreenSize().width, 20);
 
 		// Untermenüelemente hinzufügen
 		datei.add(beenden);
@@ -859,7 +843,7 @@ public class CAH {
 		namen.close();
 
 		// Antwortmöglichkeiten für Spieler 2
-
+		
 		aktSpieler.setText("<html><span style='color:#fff; font-size: 12px;font-weight: 40;'><b>aktueller Spieler:</b> "
 				+ name2 + "</span></html>");
 		naechsterSpieler
